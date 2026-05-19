@@ -59,7 +59,7 @@ void Operateur::afficherForfaits()
 {
     cout << "\n";
     cout << "╔═════════════════════════════════════════════════╗" << endl;
-    cout << "║           📦 FORFAITS DISPONIBLES               ║" << endl;
+    cout << "║            FORFAITS DISPONIBLES               ║" << endl;
     cout << "║                                                 ║" << endl;
     cout << "╠═════════════════════════════════════════════════╣" << endl;
     
@@ -72,7 +72,7 @@ void Operateur::afficherForfaits()
         for (size_t i = 0; i < forfaitsDisponibles.size(); i++)
         {
             cout << "║  " << (i + 1) << ". " << forfaitsDisponibles[i]->getNom() 
-                 << " - " << forfaitsDisponibles[i]->getPrixMensuel() << " €/mois" << endl;
+                 << " - " << forfaitsDisponibles[i]->getPrixMensuel() << " FCFA/mois" << endl;
         }
     }
     
@@ -84,7 +84,7 @@ void Operateur::afficherInfos()
 {
     cout << "\n";
     cout << "╔═════════════════════════════════════════════════╗" << endl;
-    cout << "║               🏢 OPERATEUR INFO                 ║" << endl;
+    cout << "║                OPERATEUR INFO                 ║" << endl;
     cout << "║                                                 ║" << endl;
     cout << "╠═════════════════════════════════════════════════╣" << endl;
     cout << "║  Nom: " << nom << "                             ║" << endl;
