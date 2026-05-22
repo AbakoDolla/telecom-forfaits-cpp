@@ -1,9 +1,16 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include "GestionForfait/include/client.h"
 #include "GestionForfait/include/operateur.h"
 #include "GestionForfait/include/forfait.h"
 #include "GestionForfait/include/forfaitillimite.h"
+#include "GestionForfait/include/prepayee.h"
+#include "GestionForfait/src/client.cpp"
+#include "GestionForfait/src/operateur.cpp"
+#include "GestionForfait/src/forfait.cpp"
+#include "GestionForfait/src/forfaitillimite.cpp"
+#include "GestionForfait/src/prepayee.cpp"
 
 using namespace std;
 
@@ -13,68 +20,71 @@ Operateur* operateur = nullptr; // operateur telecom
 void afficherMenu()
 {
     cout << "\n";
-    cout << "╔════════════════════════════════════╗" << endl;
-    cout << "║    SYSTEME FORFAITS TELECOM        ║" << endl;
-    cout << "║         (SIMULATION)               ║" << endl;
-    cout << "╠════════════════════════════════════╣" << endl;
-    cout << "║  1. Ajouter un client              ║" << endl;
-    cout << "║  2. Souscrire un forfait           ║" << endl;
-    cout << "║  3. Afficher les clients           ║" << endl;
-    cout << "║  4. Afficher les forfaits          ║" << endl;
-    cout << "║  5. Afficher operateur             ║" << endl;
-    cout << "║  6. Quitter                        ║" << endl;
-    cout << "╚════════════════════════════════════╝" << endl;
+    cout << "====================================" << endl;
+    cout << "   SYSTEME FORFAITS TELECOM         " << endl;
+    cout << "        (SIMULATION)                " << endl;
+    cout << "------------------------------------" << endl;
+    cout << " 1. Ajouter un client               " << endl;
+    cout << " 2. Souscrire un forfait            " << endl;
+    cout << " 3. Afficher les clients            " << endl;
+    cout << " 4. Afficher les forfaits           " << endl;
+    cout << " 5. Afficher operateur              " << endl;
+    cout << " 6. Quitter                         " << endl;
+    cout << "====================================" << endl;
     cout << "=> Choisis une option : ";
 }
 
 void initialiserOperateur()
 {
-    operateur = new Operateur("TelecomPlus", "France");
+    operateur = new Operateur("TelecomPlus", "Cameroun" );
     
     // Ajouter des forfaits standards
-    operateur->ajouterForfait(new Forfait("Basic", 9.99, 1000, false, false));
-    operateur->ajouterForfait(new Forfait("Standard", 19.99, 5000, true, false));
-    operateur->ajouterForfait(new Forfait("Premium", 29.99, 10000, true, true));
+    operateur->ajouterForfait(new Forfait("Basic", 999, 10000, false, false));
+    operateur->ajouterForfait(new Forfait("Standard", 1999, 5000, true, false));
+    operateur->ajouterForfait(new Forfait("Premium", 2999, 10000, true, true));
     
     // Ajouter des forfaits illimités
-    operateur->ajouterForfait(new ForfaitIllimite("Illimite Start", 39.99, 20000, true, true, 5000, false));
-    operateur->ajouterForfait(new ForfaitIllimite("Illimite Pro", 59.99, 50000, true, true, 10000, true));
-    operateur->ajouterForfait(new ForfaitIllimite("Illimite Gold", 79.99, 100000, true, true, 20000, true));
+    operateur->ajouterForfait(new ForfaitIllimite("Illimite Start", 3999, 20000, true, true, 5000, false));
+    operateur->ajouterForfait(new ForfaitIllimite("Illimite Pro", 5999, 50000, true, true, 10000, true));
+    operateur->ajouterForfait(new ForfaitIllimite("Illimite Gold", 7999, 100000, true, true, 20000, true));
+
+    // Ajouter un forfait prépayé optionnel
+    operateur->ajouterForfait(new Prepayee("Prepayé Découverte", 0.0, 1500, false, false, 5000, true));
 }
 
 void ajouterClient()
 {
     string nom, prenom, numero;
 
-    cout << "\n📝 AJOUT CLIENT" << endl;
+    cout << "\n AJOUT CLIENT" << endl;
     cout << "Nom client : ";
-    cin >> nom;
+    getline(cin >> ws, nom);
 
     cout << "Prenom client : ";
-    cin >> prenom;
+    getline(cin >> ws, prenom);
 
     cout << "Numero : ";
-    cin >> numero;
+    getline(cin >> ws, numero);
 
     Client c(nom, prenom, numero);
     clients.push_back(c);
 
-    cout << "✅ Client ajoute !" << endl;
+    cout << "Client ajoute !" << endl;
 }
 
 void souscrireForfait()
 {
     if (clients.empty())
     {
-        cout << "❌ Aucun client disponible. Ajoutez d'abord un client." << endl;
+        cout << "Aucun client disponible. Ajoutez d'abord un client." << endl;
         return;
     }
 
-    cout << "\n📝 SOUSCRIPTION FORFAIT" << endl;
+    cout << "\nSOUSCRIPTION FORFAIT" << endl;
     cout << "Liste des clients :" << endl;
     for (size_t i = 0; i < clients.size(); i++)
     {
-        cout << "  " << (i + 1) << ". " << clients[i].getNom() << " " << clients[i].getPrenom() 
+        cout << "  " << (i + 1) << ". " << clients[i].getNom() << " " << clients[i].getPrenom()
              << " (" << clients[i].getNumeroTelephone() << ")" << endl;
     }
 
@@ -84,7 +94,7 @@ void souscrireForfait()
 
     if (choixClient < 1 || choixClient > clients.size())
     {
-        cout << "❌ Choix invalide" << endl;
+        cout << "Choix invalide" << endl;
         return;
     }
 
@@ -96,19 +106,19 @@ void souscrireForfait()
 
     if (choixForfait < 1 || choixForfait > operateur->getForfaitsDisponibles().size())
     {
-        cout << "❌ Choix invalide" << endl;
+        cout << "Choix invalide" << endl;
         return;
     }
 
     clients[choixClient - 1].setForfaitActuel(operateur->getForfaitsDisponibles()[choixForfait - 1]);
-    cout << "✅ Forfait souscrit avec succes !" << endl;
+    cout << "Forfait souscrit avec succes !" << endl;
 }
 
 void afficherClients()
 {
     if (clients.empty())
     {
-        cout << "❌ Aucun client disponible." << endl;
+        cout << "Aucun client disponible." << endl;
         return;
     }
 
@@ -139,7 +149,7 @@ void afficherForfaits()
         }
         else
         {
-            cout << "❌ Choix invalide" << endl;
+            cout << "Choix invalide" << endl;
         }
     }
 }
@@ -172,7 +182,7 @@ int main()
                 operateur->afficherInfos();
                 break;
             case 6:
-                cout << "👋 Fermeture..." << endl;
+                cout << "Fermeture..." << endl;
                 break;
             default:
                 cout << "❌ Choix invalide" << endl;

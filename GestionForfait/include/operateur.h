@@ -17,17 +17,17 @@ class Operateur
         Operateur(std::string nom, std::string pays);
         ~Operateur();
 
-        std::string getNom();
-        std::string getPays();
-        std::vector<Forfait*> getForfaitsDisponibles();
+        std::string getNom() const;
+        std::string getPays() const;
+        const std::vector<Forfait*>& getForfaitsDisponibles() const;
 
         void setNom(std::string nom);
         void setPays(std::string pays);
 
         void ajouterForfait(Forfait* forfait);
         void supprimerForfait(int index);
-        void afficherForfaits();
-        void afficherInfos();
+        void afficherForfaits() const;
+        void afficherInfos() const;
 };
 
 #endif

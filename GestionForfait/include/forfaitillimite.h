@@ -13,14 +13,14 @@ class ForfaitIllimite : public Forfait
         ForfaitIllimite(std::string nom, double prixMensuel, int donneesMobiles, bool appelsIllimites, bool smsIllimites, int donneesBonus, bool roamingInternational);
         ~ForfaitIllimite();
 
-        int getDonneesBonus();
-        bool getRoamingInternational();
+        int getDonneesBonus() const;
+        bool getRoamingInternational() const;
 
         void setDonneesBonus(int bonus);
         void setRoamingInternational(bool roaming);
 
-        void afficherDetails() override;
-        std::string getType() override;
+        void afficherDetails() const override;
+        std::string getType() const override;
 };
 
 #endif

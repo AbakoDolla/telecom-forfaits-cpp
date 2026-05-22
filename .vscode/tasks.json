@@ -1,0 +1,36 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build telecom-forfaits",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-std=c++17",
+        "-I",
+        "GestionForfait/include",
+        "main.cpp",
+        "GestionForfait/src/client.cpp",
+        "GestionForfait/src/forfait.cpp",
+        "GestionForfait/src/forfaitillimite.cpp",
+        "GestionForfait/src/operateur.cpp",
+        "GestionForfait/src/prepayee.cpp",
+        "-o",
+        "main.exe"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    }
+  ]
+}

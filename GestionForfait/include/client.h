@@ -15,14 +15,15 @@ class Client
     /*constructeur pour initialiser les attributs du client*/
 
     public:
+        Client();
         Client(std::string nom, std::string prenom, std::string numeroTelephone);
         Client(std::string nom, std::string prenom, std::string numeroTelephone, Forfait* forfait);
         ~Client();
         
-        std::string getNom();
-        std::string getPrenom();
-        std::string getNumeroTelephone();
-        Forfait* getForfaitActuel();
+        std::string getNom() const;
+        std::string getPrenom() const;
+        std::string getNumeroTelephone() const;
+        Forfait* getForfaitActuel() const;
 
         void setNom(std::string nom);
         void setPrenom(std::string prenom);
@@ -31,7 +32,7 @@ class Client
 
 /*methode pour afficher les informations du client*/
 
-    void afficherInfos();
+    void afficherInfos() const;
 };
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef PREPAYE_H
-#define PREPAYE_H
+#ifndef PREPAYEE_H
+#define PREPAYEE_H
 
 #include "forfait.h"
 

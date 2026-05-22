@@ -16,17 +16,17 @@ Operateur::~Operateur()
     }
 }
 
-string Operateur::getNom()
+string Operateur::getNom() const
 {
     return nom;
 }
 
-string Operateur::getPays()
+string Operateur::getPays() const
 {
     return pays;
 }
 
-vector<Forfait*> Operateur::getForfaitsDisponibles()
+const vector<Forfait*>& Operateur::getForfaitsDisponibles() const
 {
     return forfaitsDisponibles;
 }
@@ -55,17 +55,17 @@ void Operateur::supprimerForfait(int index)
     }
 }
 
-void Operateur::afficherForfaits()
+void Operateur::afficherForfaits() const
 {
     cout << "\n";
-    cout << "╔═════════════════════════════════════════════════╗" << endl;
-    cout << "║            FORFAITS DISPONIBLES               ║" << endl;
-    cout << "║                                                 ║" << endl;
-    cout << "╠═════════════════════════════════════════════════╣" << endl;
+    cout << "===================================================" << endl;
+    cout << "               FORFAITS DISPONIBLES                " << endl;
+    cout << "                                                   " << endl;
+    cout << "===================================================" << endl;
     
     if (forfaitsDisponibles.empty())
     {
-        cout << "║  Aucun forfait disponible                     ║" << endl;
+        cout << "║  Aucun forfait disponible                    ║" << endl;
     }
     else
     {
@@ -76,20 +76,19 @@ void Operateur::afficherForfaits()
         }
     }
     
-    cout << "║                                                 ║" << endl;
-    cout << "╚═════════════════════════════════════════════════╝" << endl;
+    cout << "|                                                |" << endl;
+    cout << "===================================================" << endl;
 }
 
-void Operateur::afficherInfos()
+void Operateur::afficherInfos() const
 {
     cout << "\n";
-    cout << "╔═════════════════════════════════════════════════╗" << endl;
-    cout << "║                OPERATEUR INFO                 ║" << endl;
-    cout << "║                                                 ║" << endl;
-    cout << "╠═════════════════════════════════════════════════╣" << endl;
-    cout << "║  Nom: " << nom << "                             ║" << endl;
-    cout << "║  Pays: " << pays << "                           ║" << endl;
-    cout << "║  Nombre de forfaits: " << forfaitsDisponibles.size() << "                    ║" << endl;
-    cout << "║                                                 ║" << endl;
-    cout << "╚═════════════════════════════════════════════════╝" << endl;
+    cout << "==================================================" << endl;
+    cout << "               OPERATEUR INFO                     " << endl;
+    cout << "                                                  " << endl;
+    cout << "===================================================" << endl;
+    cout << "|  Nom: " << nom << "                             " << endl;
+    cout << "|  Pays: " << pays << "                           " << endl;
+    cout << "|  Nombre de forfaits: " << forfaitsDisponibles.size() << "                    " << endl;
+    cout << "===================================================" << endl;
 }

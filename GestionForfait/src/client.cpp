@@ -1,5 +1,6 @@
 #include "../include/client.h"
 #include <iostream>
+#include <limits>
 using namespace std;
 
 /*constructeur vide*/
@@ -41,22 +42,22 @@ Client::~Client()
 
 /*getters*/
 
-string Client::getNom()
+string Client::getNom() const
 {
     return nom;
 }
 
-string Client::getPrenom()
+string Client::getPrenom() const
 {
     return prenom;
 }
 
-string Client::getNumeroTelephone()
+string Client::getNumeroTelephone() const
 {
     return numeroTelephone;
 }
 
-Forfait* Client::getForfaitActuel()
+Forfait* Client::getForfaitActuel() const
 {
     return forfaitActuel;
 }
@@ -85,29 +86,31 @@ void Client::setForfaitActuel(Forfait* forfait)
 
 /*afficher les informations du client*/
 
-void Client::afficherInfos()
+void Client::afficherInfos() const
 {
-     cout << "\n";
-    cout << "╔═════════════════════════════════════════════════╗" << endl;
-    cout << "║               👤CLIENT INFO                     ║" << endl;
-    cout << "║                                                 ║" << endl;
-    cout << "╠═════════════════════════════════════════════════╣" << endl;
-    cout << "║  Nom: " << nom << "                             ║" << endl;
-    cout << "║  Prenom: " << prenom << "                       ║" << endl;
-    cout << "║  Numero de telephone: " << numeroTelephone << " ║" << endl;
+    cout << "\n";
+    cout << "==================================================" << endl;
+    cout << "               CLIENT INFO                       " << endl;
+    cout << "                                                 " << endl;
+    cout << "==================================================" << endl;
+    cout << "  |Nom: " << nom << "                              " << endl;
+    cout << "  |Prenom: " << prenom << "                        " << endl;
+    cout << "  |Numero de telephone: " << numeroTelephone <<    ""<< endl;
+    cout << "  -------------------------------------------------" << endl;
     
     if (forfaitActuel != nullptr)
     {
-        cout << "║  Forfait: " << forfaitActuel->getNom() << " (" << forfaitActuel->getType() << ")" << endl;
-        cout << "║  Prix: " << forfaitActuel->getPrixMensuel() << " €/mois" << endl;
+        cout << "  |Forfait: " << forfaitActuel->getNom() << " (" << forfaitActuel->getType() << ")" << endl;
+        cout << "  |Prix: " << forfaitActuel->getPrixMensuel() << " Fcfa/mois" << endl;
     }
     else
     {
-        cout << "║  Forfait: Aucun                              ║" << endl;
+        cout << "  |Forfait: Aucun                              " << endl;
     }
     
-    cout << "║                                                 ║" << endl;
-    cout << "╚═════════════════════════════════════════════════╝" << endl;
-    cout << "Taper n'importe quelle touche pour revenir au menu principal..." << endl;
+    cout << "                                                   " << endl;
+    cout << "---------------------------------------------------" << endl;
+    cout << "Taper ENTER pour revenir au menu principal..." << endl;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
 }

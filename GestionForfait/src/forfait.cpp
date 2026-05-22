@@ -15,27 +15,27 @@ Forfait::~Forfait()
 {
 }
 
-string Forfait::getNom()
+string Forfait::getNom() const
 {
     return nom;
 }
 
-double Forfait::getPrixMensuel()
+double Forfait::getPrixMensuel() const
 {
     return prixMensuel;
 }
 
-int Forfait::getDonneesMobiles()
+int Forfait::getDonneesMobiles() const
 {
     return donneesMobiles;
 }
 
-bool Forfait::getAppelsIllimites()
+bool Forfait::getAppelsIllimites() const
 {
     return appelsIllimites == 1;
 }
 
-bool Forfait::getSmsIllimites()
+bool Forfait::getSmsIllimites() const
 {
     return smsIllimites == 1;
 }
@@ -65,23 +65,23 @@ void Forfait::setSmsIllimites(bool illimites)
     this->smsIllimites = illimites ? 1 : 0;
 }
 
-void Forfait::afficherDetails()
+void Forfait::afficherDetails() const
 {
     cout << "\n";
-    cout << "╔═════════════════════════════════════════════════╗" << endl;
-    cout << "║               📦 FORFAIT INFO                   ║" << endl;
-    cout << "║                                                 ║" << endl;
-    cout << "╠═════════════════════════════════════════════════╣" << endl;
-    cout << "║  Nom: " << nom << "                             ║" << endl;
-    cout << "║  Prix mensuel: " << prixMensuel << " €          ║" << endl;
-    cout << "║  Donnees mobiles: " << donneesMobiles << " MB   ║" << endl;
-    cout << "║  Appels illimites: " << (appelsIllimites ? "Oui" : "Non") << "                    ║" << endl;
-    cout << "║  SMS illimites: " << (smsIllimites ? "Oui" : "Non") << "                       ║" << endl;
-    cout << "║                                                 ║" << endl;
-    cout << "╚═════════════════════════════════════════════════╝" << endl;
+    cout << "==================================================" << endl;
+    cout << "               FORFAIT INFO                       " << endl;
+    cout << "                                                 " << endl;
+    cout << "--------------------------------------------------" << endl;
+    cout << "  Nom: " << nom << "                              " << endl;
+    cout << "  Prix mensuel: " << prixMensuel << " Fcfa          " << endl;
+    cout << "  Donnees mobiles: " << donneesMobiles << " MB   " << endl;
+    cout << "  Appels illimites: " << (appelsIllimites ? "Oui" : "Non") << "" << endl;
+    cout << "  SMS illimites: " << (smsIllimites ? "Oui" : "Non") << "" << endl;
+    cout << "                                                   " << endl;
+    cout << "---------------------------------------------------" << endl;
 }
 
-string Forfait::getType()
+string Forfait::getType() const
 {
     return "Standard";
 }
